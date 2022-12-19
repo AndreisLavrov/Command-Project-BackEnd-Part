@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.net.MalformedURLException;
 import org.json.JSONObject;
-
+import org.json.JSONString;
 
 
 public class Sub_QR_Generator {
     public static void main (String [] args) {
 
-        String urlAddress = "https://pay-test.raif.ru/api/sbp/v1/subscriptions";
+        String urlAddress = "https://pay-test.raif.ru/api/sbp/v2/qrs";
         URL url;
         HttpURLConnection httpURLConnection;
         OutputStream OS = null;
@@ -23,16 +23,15 @@ public class Sub_QR_Generator {
 
         try {
             JSONObject json = new JSONObject();
+            JSONObject help = new JSONObject();
 
-            // ID подписки на стороне партнёра
-            json.put("id", "0a3509c9-1ff6-4a47-839e-a68964daa2b6");
-
-            // Описание подписки которое увидит клиент в приложении банка
-            json.put("subscriptionPurpose", "Тестовая подписка");
-
-            // Ссылка, куда которой клиента вернет после оплаты
-            json.put("redirectUrl", "https://doncoin.netlify.app");
+            json.put("qrType", "QRDynamic");
+            json.put("amount", 23300);
+            json.put("order", "scheduler1");
             json.put("sbpMerchantId", "MA999438");
+            help.put("id", "9445912");
+            help.put("subscriptionPurpose", "nana");
+            json.put("subscription", help);
 
             byte [] out = json.toString().getBytes();
 

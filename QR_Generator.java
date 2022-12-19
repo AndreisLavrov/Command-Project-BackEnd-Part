@@ -24,13 +24,9 @@ public class QR_Generator {
         try {
             JSONObject json = new JSONObject();
 
-            json.put("qrType", "QRStatic");
-
-            // сумма на оплату
-            json.put("amount", 100);
-
-            // ID заказа в системе партнёра
-            json.put("order", "a9384868-6e4d-11ed-a1eb-0242ac120002");
+            json.put("qrType", "QRDynamic");
+            json.put("amount", 111);
+            json.put("order", "test");
             json.put("sbpMerchantId", "MA999438");
 
             byte [] out = json.toString().getBytes();
